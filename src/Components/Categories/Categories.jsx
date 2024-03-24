@@ -8,7 +8,7 @@ const Categories = () => {
   console.log(categories);
   return (
     <Container>
-      <div className="pt-4  flex flex-row gap-2 items-center justify-between overflow-x-auto">
+      <div className="p-4 flex flex-row gap-2 items-center justify-between overflow-x-auto">
         {categories.map((category,index) => (
           <Category key={index} icon={category.icon} label={category.label} ></Category>
         ))}
