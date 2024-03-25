@@ -4,15 +4,23 @@ import Categories from '../Components/Categories/Categories'
 import Home from '../Pages/Home/Home'
 import Login from '../Pages/Login/Login'
 import SignUp from '../Pages/Signup/Signup'
+import RoomDetails from '../Pages/RoomDetails/RoomDetails'
+import PrivateRoute from './PrivateRoute'
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Main />,
-    children:[{
+    children:[
+      {
       path:'/',
       element:<Home></Home>
-    }]
+    },
+    {
+      path:'/room/:id',
+      element:<PrivateRoute><RoomDetails></RoomDetails></PrivateRoute>
+    }
+  ]
   },
   {
     path:'/login',
