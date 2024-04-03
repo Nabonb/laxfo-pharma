@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 const Avatar = () => {
   const { user } = useContext(AuthContext);
+  // console.log(user)
   return (
       <img
         className="rounded-full"
