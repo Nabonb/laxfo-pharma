@@ -6,6 +6,11 @@ import { AuthContext } from "../../providers/AuthProvider";
 const AddRoom = () => {
   const [loading, setLoading] = useState(false);
   const { user } = useContext(AuthContext);
+  const [dates, setDates] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: "selection",
+  });
   const [uploadButtonText, setUploadButtonText] = useState("Upload Image");
   //handle form submit
   const handleSubmit = (event) => {
@@ -13,8 +18,8 @@ const AddRoom = () => {
     setLoading(true);
     const location = event.target.location.value;
     const title = event.target.title.value;
-    // const from = dates.startDate
-    // const to = dates.endDate
+    const from = dates.startDate
+    const to = dates.endDate
     const price = event.target.price.value;
     const guests = event.target.total_guest.value;
     const bedrooms = event.target.bedrooms.value;
@@ -43,6 +48,7 @@ const AddRoom = () => {
           },
           category,
         };
+        console.log(roomData)
         setLoading(false);
       })
       .catch((err) => {
@@ -56,12 +62,20 @@ const AddRoom = () => {
     setUploadButtonText(image.name);
   };
 
+  //handle date changes
+  const handleDates = ranges =>{
+    setDates(ranges.selection)
+    //  console.log(ranges.selection)
+  }
+
   return (
     <AddRoomForm
       handleSubmit={handleSubmit}
       uploadButtonText={uploadButtonText}
       handleImageChange={handleImageChange}
       loading={loading}
+      dates={dates}
+      handleDates={handleDates}
     ></AddRoomForm>
   );
 };
