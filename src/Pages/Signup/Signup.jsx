@@ -26,12 +26,12 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const image = form.image.files[0];
+    
+    //upload image into IMGBB
     const formData = new FormData();
     formData.append("image", image);
     // console.log(email,password)
     console.log(formData);
-
-    //upload image into IMGBB
     const url = `https://api.imgbb.com/1/upload?key=${
       import.meta.env.VITE_IMGBB_KEY
     }`;

@@ -6,7 +6,7 @@ const AddRoomForm = ({
   handleSubmit,
   dates,
   handleDates,
-  loading = false,
+  loading,
   handleImageChange,
   uploadButtonText,
 }) => {
