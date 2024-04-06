@@ -5,7 +5,6 @@ import { DateRange } from 'react-date-range'
 const DatePicker = () => {
   return (
     <DateRange
-    className='mx-auto w-full'
       rangeColors={['#262626']}
       date={new Date()}
       direction='vertical'
