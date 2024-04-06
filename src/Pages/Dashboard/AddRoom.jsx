@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import AddRoomForm from "../../Components/Form/AddRoomForm";
 import { imageUpload } from "../../api/utils";
 import { AuthContext } from "../../providers/AuthProvider";
+import { addRoom } from "../../api/rooms";
+import toast from "react-hot-toast";
 
 const AddRoom = () => {
   const [loading, setLoading] = useState(false);
@@ -18,8 +20,8 @@ const AddRoom = () => {
     setLoading(true);
     const location = event.target.location.value;
     const title = event.target.title.value;
-    const from = dates.startDate
-    const to = dates.endDate
+    const from = dates.startDate;
+    const to = dates.endDate;
     const price = event.target.price.value;
     const guests = event.target.total_guest.value;
     const bedrooms = event.target.bedrooms.value;
@@ -48,7 +50,18 @@ const AddRoom = () => {
           },
           category,
         };
-        console.log(roomData)
+
+        //post room data to the server
+        addRoom(roomData)
+          .then((data) => {
+            toast.success("Room Added!");
+            console.log(data);
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+
+        console.log(roomData);
         setLoading(false);
       })
       .catch((err) => {
@@ -63,10 +76,10 @@ const AddRoom = () => {
   };
 
   //handle date changes
-  const handleDates = ranges =>{
-    setDates(ranges.selection)
+  const handleDates = (ranges) => {
+    setDates(ranges.selection);
     //  console.log(ranges.selection)
-  }
+  };
 
   return (
     <AddRoomForm
