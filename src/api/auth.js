@@ -14,7 +14,7 @@ export const saveUser = user =>{
 //Becoming a host
 export const becomeHost = async email =>{
     const currentUser = {
-       role:'Host'
+       role:'host'
     }
    return await fetch(`${import.meta.env.VITE_API_URL}/users/${email}`,{
         method:"PUT",
