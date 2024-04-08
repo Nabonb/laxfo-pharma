@@ -26,7 +26,7 @@ export const becomeHost = async email =>{
     }).then(res=>res.json())
 }
 
-//
+//get user for finding the role
 export const getRole = async email =>{
     const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${email}`)
     const user = await response.json()
