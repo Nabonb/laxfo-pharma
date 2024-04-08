@@ -6,12 +6,16 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { formatDistance } from "date-fns";
 import { useState } from "react";
 import BookingModal from "../Modal/BookingModal";
-import { addBooking } from "../../api/bookings";
+import { addBooking, updateStatus } from "../../api/bookings";
 import { toast } from "react-hot-toast";
+import { useNavigate } from 'react-router-dom'
 
 const RoomReservation = ({ roomData }) => {
   const { user } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [isButtonDisabled,setIsButtonDisabled]=  useState(false)
+  const navigate = useNavigate()
+  
   //finding total price using date fns tool
   const totalPrice =
     parseFloat(
@@ -37,6 +41,8 @@ const RoomReservation = ({ roomData }) => {
     from: value.startDate,
     to: value.endDate,
     title: roomData.title,
+    roomId: roomData._id,
+    image:roomData.image,
   });
 
   const handleDates = (ranges) => {
@@ -52,9 +58,13 @@ const RoomReservation = ({ roomData }) => {
   const modalHandler = () => {
     addBooking(bookingInfo)
       .then((data) => {
-        toast.success("Booking done successfully");
-        console.log(data);
-        closeModal();
+        updateStatus(roomData._id, true).then((data) => {
+          toast.success("Booking done successfully");
+          console.log(data);
+          setIsButtonDisabled(true)
+          closeModal();
+          navigate('/dashboard/my-bookings')
+        });
       })
       .catch((err) => {
         closeModal();
@@ -77,7 +87,7 @@ const RoomReservation = ({ roomData }) => {
       <div className="p-4">
         <Button
           onClick={() => setIsOpen(true)}
-          disabled={roomData.host.email === user?.email}
+          disabled={roomData.host.email === user?.email || roomData.booked || isButtonDisabled}
           label="Reserve"
         ></Button>
       </div>
