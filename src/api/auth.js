@@ -11,6 +11,7 @@ export const saveUser = user =>{
         body:JSON.stringify(currentUser)
     }).then(res=>res.json()).then(data=>console.log(data))
 }
+
 //Becoming a host
 export const becomeHost = async email =>{
     const currentUser = {
@@ -23,4 +24,11 @@ export const becomeHost = async email =>{
         },
         body:JSON.stringify(currentUser)
     }).then(res=>res.json())
+}
+
+//
+export const getRole = async email =>{
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${email}`)
+    const user = await response.json()
+    return user?.role
 }
