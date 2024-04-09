@@ -15,7 +15,7 @@ const RoomReservation = ({ roomData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isButtonDisabled,setIsButtonDisabled]=  useState(false)
   const navigate = useNavigate()
-  
+
   //finding total price using date fns tool
   const totalPrice =
     parseFloat(
