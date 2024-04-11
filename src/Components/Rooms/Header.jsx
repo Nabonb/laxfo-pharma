@@ -8,8 +8,8 @@ const Header = ({roomData}) => {
         title={roomData.title}
         subtitle={roomData.location}
       ></Heading>
-      <div className="w-full md:h-[60vh] rounded-xl overflow-hidden ">
-        <img className="object-cover w-full" src={roomData.image} alt="" />
+      <div className="w-full md:h-[70vh] rounded-xl overflow-hidden ">
+        <img className="object-cover w-full h-full" src={roomData.image} alt="" />
       </div>
     </>
   );
