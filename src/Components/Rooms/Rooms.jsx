@@ -45,7 +45,7 @@ const Rooms = () => {
           ))}
         </div>
       ) : (
-        <div className="pt-12"><Heading title="No Rooms Available In This Category Right Now!" subtitle="Please Check Other Categories" center="true"></Heading></div>
+        <div className="min-h-[calc(100vh-320px)] flex items-center justify-center"><Heading title="No Rooms Available In This Category Right Now!" subtitle="Please Check Other Categories" center="true"></Heading></div>
       )}
     </Container>
   );
