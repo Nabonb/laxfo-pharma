@@ -5,10 +5,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 import RoomDataRow from "../../Components/Dashboard/RoomDataRow";
 import EmptyState from "../../Components/Shared/Navbar/EmptyState";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyListings = () => {
   const { user } = useContext(AuthContext);
   const [rooms, setRooms] = useState([]);
+  const [axiosSecure] = useAxiosSecure()
 
   //Getting all rooms using host email
   const fetchRooms = () => {
