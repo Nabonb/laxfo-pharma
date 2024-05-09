@@ -1,29 +1,42 @@
 import { useContext } from "react";
-import { getRooms } from "../../api/rooms";
+// import { getRooms } from "../../api/rooms";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useState } from "react";
 import { useEffect } from "react";
 import RoomDataRow from "../../Components/Dashboard/RoomDataRow";
 import EmptyState from "../../Components/Shared/Navbar/EmptyState";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const MyListings = () => {
-  const { user } = useContext(AuthContext);
-  const [rooms, setRooms] = useState([]);
-  const [axiosSecure] = useAxiosSecure()
+  const { user,loading } = useContext(AuthContext);
+  // const [rooms, setRooms] = useState([]);
+  const [axiosSecure] = useAxiosSecure();
 
-  //Getting all rooms using host email
-  const fetchRooms = () => {
-    getRooms(user?.email).then((data) => {
-      console.log(data);
-      setRooms(data);
-    });
-  };
+   //Getting all rooms using host email
+  // const fetchRooms = () => {
+  //   axiosSecure
+  //     .get(`/rooms/${user?.email}`)
+  //     .then((data) => setRooms(data.data))
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  // user dependency because of late reload of a user
-  useEffect(() => {
-    fetchRooms();
-  }, [user]);
+  // // user dependency because of late reload of a user
+  // useEffect(() => {
+  //   fetchRooms();
+  // }, [user]);
+
+  const {data:rooms= [], refetch} = useQuery({
+    queryKey: ["rooms",user?.email],
+    enabled: !loading,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/rooms/${user?.email}`)
+      console.log(res.data)
+      return res.data
+    },
+  });
 
   return (
     <>
@@ -85,7 +98,7 @@ const MyListings = () => {
                         <RoomDataRow
                           key={room._id}
                           room={room}
-                          fetchRooms={fetchRooms}
+                          refetch={refetch}
                         ></RoomDataRow>
                       ))}
                   </tbody>
@@ -95,7 +108,11 @@ const MyListings = () => {
           </div>
         </div>
       ) : (
-        <EmptyState message="You Haven't Added Any Room Yet!" address="/dashboard/add-room" label="Add Room"></EmptyState>
+        <EmptyState
+          message="You Haven't Added Any Room Yet!"
+          address="/dashboard/add-room"
+          label="Add Room"
+        ></EmptyState>
       )}
     </>
   );

@@ -27,15 +27,15 @@ export const getRoom =async(id)=>{
 }
 
 //GET FILTERED ROOM FOR HOST
-export const getRooms = async email =>{
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/rooms/${email}`,{
-        headers:{
-            authorization : `Bearer ${localStorage.getItem('access-token')}`,
-        },
-    })
-    const data = await response.json()
-    return data
-}
+// export const getRooms = async email =>{
+//     const response = await fetch(`${import.meta.env.VITE_API_URL}/rooms/${email}`,{
+//         headers:{
+//             authorization : `Bearer ${localStorage.getItem('access-token')}`,
+//         },
+//     })
+//     const data = await response.json()
+//     return data
+// }
 
 //DELETE A SINGLE ROOM FOR HOST 
 export const deleteRoom = async id =>{
