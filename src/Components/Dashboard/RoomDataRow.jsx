@@ -1,29 +1,31 @@
 import { format } from 'date-fns'
-import { useContext } from 'react'
-import { useState } from 'react'
-import { AuthContext } from '../../providers/AuthProvider'
-import { deleteRoom } from '../../api/rooms'
+import React, { useState } from 'react'
 import toast from 'react-hot-toast'
+import { deleteRoom } from '../../api/rooms'
 import DeleteModal from '../Modal/DeleteModal'
+import UpdateRoomModal from '../Modal/UpdateRoomModal'
 
-const RoomDataRow = ({ room,refetch }) => {
-    const [isOpen,setIsOpen] = useState(false)
-    const {user} = useContext(AuthContext)
+const RoomDataRow = ({ room, refetch }) => {
+  let [isOpen, setIsOpen] = useState(false)
+  const [isEditModalOpen,setIsEditModalOpen] = useState(false)
 
-    //For Handling the modal
-    const modalHandler= (id)=>{
-        deleteRoom(id).then(data=>{
-            console.log(data)
-            refetch()
-            toast.success("Room Deleted Successfully")
-        }).catch(err=>console.log(err.message))
-        closeModal()
-    }
-
-    //For closing the modal
-    const closeModal =()=>{
-        setIsOpen(false)
-    }
+  function openModal() {
+    setIsOpen(true)
+  }
+  function closeModal() {
+    setIsOpen(false)
+  }
+  const modalHandler = id => {
+    console.log(id)
+    deleteRoom(id)
+      .then(data => {
+        console.log(data)
+        refetch()
+        toast.success('Room deleted')
+      })
+      .catch(err => console.log(err))
+    closeModal()
+  }
   return (
     <tr>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -59,23 +61,41 @@ const RoomDataRow = ({ room,refetch }) => {
         </p>
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <span onClick={()=>setIsOpen(true)} className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
+        <span
+          onClick={openModal}
+          className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+        >
           <span
             aria-hidden='true'
             className='absolute inset-0 bg-red-200 opacity-50 rounded-full'
           ></span>
           <span className='relative'>Delete</span>
         </span>
+        <DeleteModal
+          isOpen={isOpen}
+          closeModal={closeModal}
+          modalHandler={modalHandler}
+          id={room._id}
+        />
       </td>
-      <DeleteModal modalHandler={modalHandler} closeModal={closeModal} id={room._id} isOpen={isOpen}></DeleteModal>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <span className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
+        <span
+          onClick={() => setIsEditModalOpen(true)}
+          className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+        >
           <span
             aria-hidden='true'
             className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
           ></span>
           <span className='relative'>Update</span>
         </span>
+        <UpdateRoomModal
+          isOpen={isEditModalOpen}
+          room={room}
+          id={room._id}
+          refetch={refetch}
+          setIsEditModalOpen={setIsEditModalOpen}
+        />
       </td>
     </tr>
   )
