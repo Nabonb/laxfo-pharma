@@ -1,0 +1,9 @@
+
+.carousel{
+    display: flex;
+    justify-content: center;
+    display: relative;
+}
+.carousel-status{
+    display:none;
+}

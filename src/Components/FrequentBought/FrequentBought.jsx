@@ -1,4 +1,6 @@
 import React from "react";
+import { product_list } from "../../assets/data/product";
+import SingleProduct from "../SingleProduct/SingleProduct";
 
 const FrequentBought = () => {
   return (
@@ -7,7 +9,7 @@ const FrequentBought = () => {
         <h1 className="font-medium text-[40px] mb-4">
           Frequently Bought Together
         </h1>
-        <p className="font-normal italic text-base">
+        <p className="font-normal italic text-base text-justify">
           In the dynamic world of e-commerce, the "Frequently Bought Together"
           feature has become a cornerstone of the online shopping experience.
           This tool leverages the power of data analytics and consumer behavior
@@ -17,7 +19,13 @@ const FrequentBought = () => {
           satisfaction, and streamline the shopping process.
         </p>
       </div>
-      <div>Make something Happen</div>
+      <div>
+        <div className="grid md:grid-cols-3">
+          {product_list.map((product) => (
+            <SingleProduct key={product._id} product={product}></SingleProduct>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
