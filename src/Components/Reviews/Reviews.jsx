@@ -5,9 +5,9 @@ import SingleReview from "./SingleReview";
 
 const Reviews = () => {
   return (
-    <div className="px-[80px]">
+    <div className="md:px-[80px] px-[16px]">
       <h1 className="font-medium text-[40px] mb-4">Reviews</h1>
-      <div className="mt-4 flex items-center mb-[59px] justify-between">
+      <div className="mt-4 md:flex items-center mb-[59px] justify-between">
         <div>
           <button className="bg-[#164F49] py-[15px] px-[32px] text-white font-medium text-base">
             Write a Review
@@ -17,7 +17,7 @@ const Reviews = () => {
           <p className="font-medium text-base">Filter Reviews</p>  
           <hr className="border border-black mb-[14px] w-[107px]"/>
           <div className="flex">
-            <div className="flex items-center bg-[#164F49] text-white w-[219px] h-[39px] px-3 py-[10px] rounded mr-5">
+            <div className="flex items-center bg-[#164F49] text-white w-1/2 md:w-[219px] h-[39px] px-3 py-[10px] rounded mr-5">
               <input
                 type="text"
                 placeholder="Search"
@@ -28,10 +28,10 @@ const Reviews = () => {
               </button>
             </div>
             <div>
-              <div className="space-y-1 text-sm ">
+              <div className="text-sm ">
                 <select
                   required
-                  className="w-[219px] h-[39px] px-3 py-[10px] text-xs bg-transparent border border-black"
+                  className="md:w-[219px] w-full h-[39px] px-3 py-[10px] text-xs bg-transparent border border-black"
                 >
                   <option value="">Image And Videos</option>
                 </select>

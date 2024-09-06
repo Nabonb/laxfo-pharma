@@ -4,6 +4,11 @@ import plus from "../../assets/images/plus.png";
 import minus from "../../assets/images/minus.png";
 import circleEnabled from "../../assets/images/circle-enabled.png";
 import circleDisabled from "../../assets/images/circle-disabled.png";
+import stethoscope from "../../assets/images/stethoscope.png"
+import starCircle from "../../assets/images/star-circle.png"
+import clinical from "../../assets/images/clinical.png"
+import ingredient from "../../assets/images/ingredient.png"
+import security from "../../assets/images/application-security.png"
 
 const ProductDetail = () => {
   return (
@@ -76,7 +81,7 @@ const ProductDetail = () => {
           <div className="">
             <img className="text-center" src={minus} alt="" />
           </div>
-          <p className="font-medium text-[40px] mx-[138px]">Add To Cart</p>
+          <p className="font-medium md:text-[40px] text-[24px] md:mx-[138px] mx-[94px]">Add To Cart</p>
           <img src={plus} alt="" />
         </button>
       </div>
@@ -124,8 +129,27 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
-      <div>
-
+      <div className="flex justify-evenly items-center">
+          <div>
+              <img className="mx-auto mb-2" src={stethoscope} alt="" />
+              <p className="text-center font-medium text-sm">Founded By <br />Doctor</p>
+          </div>
+          <div>
+              <img className="mx-auto mb-2" src={starCircle} alt="" />
+              <p className="text-center font-medium text-sm">Made In <br />Bangladesh</p>
+          </div>
+          <div>
+              <img className="mx-auto mb-2" src={clinical} alt="" />
+              <p className="text-center font-medium text-sm">Clinically <br />Verified</p>
+          </div>
+          <div>
+              <img className="mx-auto mb-2" src={ingredient} alt="" />
+              <p className="text-center font-medium text-sm">Halal <br />Ingredients</p>
+          </div>
+          <div>
+              <img className="mx-auto mb-2" src={security} alt="" />
+              <p className="text-center font-medium text-sm">Tested By <br />3rd Party</p>
+          </div>
       </div>
       
       

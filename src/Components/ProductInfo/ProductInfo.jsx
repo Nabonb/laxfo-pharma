@@ -3,9 +3,9 @@ import coche from "../../assets/images/coche.png";
 
 const ProductInfo = () => {
   return (
-    <div className="flex justify-evenly">
-      <div className="flex items-center">
-        <div>
+    <div className="flex md:mx[80px] mx-4 md:flex-row flex-col-reverse">
+      <div className="flex items-center md:w-1/2 mx-auto">
+        <div className="mx-auto">
           <div className="collapse collapse-plus">
             <input type="radio" name="my-accordion-3" defaultChecked />
             <div className="collapse-title text-2xl font-medium">Benefits</div>
@@ -69,8 +69,8 @@ const ProductInfo = () => {
           </div>
         </div>
       </div>
-      <div>
-        <img src={coche} alt="" />
+      <div className="md:w-1/2 ">
+        <img className="mx-auto" src={coche} alt="" />
       </div>
     </div>
   );

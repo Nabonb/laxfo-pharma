@@ -13,12 +13,13 @@ import Product from "../Components/Product/Product";
 
 const Main = () => {
   return (
-    <div className="bg-[#FFFFF6]">
+    <div className="bg-[#FFFFF6] w-full border border-red-700">
       <Header></Header>
       <Navbar></Navbar>
       <WishList></WishList>
       <hr className="border mt-5 mb-[14px]"/>
       <Product></Product>
+      <hr className="border mt-[30px] mb-[48px]"/>
       <ProductInfo></ProductInfo>
       <hr className="border mt-[50px] mb-[40px]"/>
       <Quote></Quote>

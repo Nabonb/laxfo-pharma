@@ -9,11 +9,11 @@ import rightArrow from "../../assets/images/arrow-right.png";
 
 const Footer = () => {
   return (
-    <div className="bg-[#15322D] grid grid-cols-3 gap-x-20 pt-[45px] pb-[40px]">
+    <div className="bg-[#15322D] grid md:grid-cols-3 gap-x-20 md:pt-[45px] md:pb-[40px] p-4">
       <div className="flex justify-center items-center">
         <img className="" src={logoFooter} alt="" />
       </div>
-      <div>
+      <div className="sm:mt-8 sm:mb-[42px]">
         <p className="text-center text-white mb-[27px] font-medium text-base">
           Subscribe to the newsletter and always stay updated on the latest news
           and exclusive promotions.
@@ -30,8 +30,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div>
-        <p className="text-white mb-3 font-medium text-base">
+      <div className="mx-auto md:mx-0">
+        <p className="text-white mb-3 font-medium text-base text-center md:text-left">
           We are here to help
         </p>
         <div className="flex">

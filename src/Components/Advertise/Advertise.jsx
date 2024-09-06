@@ -2,7 +2,7 @@ import React from "react";
 
 const Advertise = () => {
   return (
-    <div className="bg-[#FF6B6E] grid grid-cols-3 px-[80px] py-4 text-white">
+    <div className="bg-[#FF6B6E] grid md:grid-cols-3 px-[80px] py-4 text-white">
       <div className="text-center">
         <p className="font-medium text-2xl">
           Free BD shopping Over
@@ -10,7 +10,7 @@ const Advertise = () => {
         </p>
         <p className="font-medium text-2xl">Shop Now</p>
       </div>
-      <div className="text-center">
+      <div className="text-center my-[32px] md:my-0">
         <p className="font-medium text-2xl">
           <span className="font-normal italic text-2xl">3-5 Day </span>
           International Shipping
